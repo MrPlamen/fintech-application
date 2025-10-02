@@ -1,0 +1,46 @@
+package app.subscription.model;
+
+import app.user.model.User;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Subscribtion {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    public UUID id;
+
+    @ManyToOne
+    private User owner;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private SubscriptionStatus status;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private SubscriptionPeriod period;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private SubscriptionType type;
+
+    @Column(nullable = false)
+    private BigDecimal price;
+
+    private boolean renewalAllowed;
+
+    @Column(nullable = false)
+    private LocalDateTime createdOn;
+
+    @Column(nullable = false)
+    private LocalDateTime completedOn;
+}
