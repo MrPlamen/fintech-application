@@ -1,8 +1,11 @@
 package app.user.model;
 
+import app.subscription.model.Subscribtion;
+import app.wallet.model.Wallet;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -43,7 +46,9 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedOn;
 
-//· subscriptions – a List of Subscription containing user's subscriptions
-//
-//            · wallets – a List of Wallet containing user's wallets
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+    private List<Subscribtion> subscriptions;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+    private List<Wallet> wallets;
 }
