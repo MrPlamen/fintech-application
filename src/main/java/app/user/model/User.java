@@ -1,14 +1,22 @@
 package app.user.model;
 
-import app.subscription.model.Subscribtion;
+import app.subscription.model.Subscription;
 import app.wallet.model.Wallet;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
+@Table(name = "users")
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -47,8 +55,8 @@ public class User {
     private LocalDateTime updatedOn;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
-    private List<Subscribtion> subscriptions;
+    private List<Subscription> subscriptions = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
-    private List<Wallet> wallets;
+    private List<Wallet> wallets = new ArrayList<>();
 }

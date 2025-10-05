@@ -12,7 +12,7 @@ import java.util.UUID;
 @Entity
 @Data
 @NoArgsConstructor
-public class Subscribtion {
+public class Subscription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
